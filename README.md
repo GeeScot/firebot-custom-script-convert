@@ -1,6 +1,9 @@
 ## Firebot Custom Script: Convert Imperial/Metric
 Convert Imperial to Metric and vice versa as a Firebot command.
 
+### how to use this script
+Copy the file src/convert.js in to the Firebot custom scripts folder as prompted by Firebot.
+
 ### test
 ```
 npm test
