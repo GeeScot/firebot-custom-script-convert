@@ -1,17 +1,16 @@
 exports.getScriptManifest = () => {
   return {
-    name: "Convert Imperial/Metric",
-    description: "Converts values from imperial to metric and vice versa",
-    author: "GeeScot",
-    version: "1.0",
-    website: "https://www.twitch.tv/GeeScot",
+    name: 'Convert Imperial/Metric',
+    description: 'Converts values from imperial to metric and vice versa',
+    author: 'GeeScot',
+    version: '1.0',
+    website: 'https://www.twitch.tv/GeeScot',
     startupOnly: false,
-    firebotVersion: "5"
+    firebotVersion: '5'
   };
 }
 
 exports.run = (runRequest) => {
-  const username = runRequest.trigger.metadata.username;
   const command = runRequest.trigger.metadata.userCommand.args.join('');
   let response = "";
 
@@ -36,17 +35,17 @@ exports.run = (runRequest) => {
     break;
   }
 
-  return createResponse(username, response);
+  return createResponse(response);
 }
 
-function createResponse(username, message) {
+function createResponse(message) {
   return new Promise((resolve, reject) => {
     const response = {
       success: true,
       effects: [{
-        type: "firebot:chat",
+        type: 'firebot:chat',
         message: message,
-        chatter: username
+        chatter: 'Bot'
       }] 
     }
 
