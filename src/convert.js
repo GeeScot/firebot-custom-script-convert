@@ -1,13 +1,13 @@
 exports.getScriptManifest = () => {
-	return {
-		name: "Convert Imperial/Metric",
-		description: "Converts values from imperial to metric and vice versa",
-		author: "GeeScot",
-		version: "1.0",
-		website: "https://www.twitch.tv/GeeScot",
+  return {
+    name: "Convert Imperial/Metric",
+    description: "Converts values from imperial to metric and vice versa",
+    author: "GeeScot",
+    version: "1.0",
+    website: "https://www.twitch.tv/GeeScot",
     startupOnly: false,
     firebotVersion: "5"
-	};
+  };
 }
 
 exports.run = (runRequest) => {
