@@ -2,59 +2,52 @@
 Convert Imperial to Metric and vice versa as a Firebot command.
 
 ### how to use this script
-Copy the file src/convert.js in to the Firebot custom scripts folder as prompted by Firebot.
+Copy the file src/script.js in to the Firebot custom scripts folder as prompted by Firebot.
+
+### install
+```
+npm install
+```
+
+### build
+```
+npm run build
+```
 
 ### test
 ```
 npm test
 ```
 
-### examples
+### Firebot types
+```js
+type FirebotRequest = {
+  parameters: { 
+    message: string
+  },
+  trigger: {
+    type: string,
+    metadata: {
+      username: string,
+      userCommand: {
+        trigger: string,
+        args: string[]
+      }
+    }
+  }
+}
 
-###### C to F
-```
-> !convert -12C
-> -12C to 10.40F
-```
+type FirebotEffectType = 'firebot:chat';
+type FirebotChatter = 'Streamer' | 'Bot';
 
-###### F to C
-```
-> !convert 60F
-> 60F to 15.56C
-```
+type FirebotEffect = {
+  type: FirebotEffectType,
+  chatter: FirebotChatter,
+  message: string
+}
 
-###### feet/inches to centimetres
-```
-> !convert 6'1
-> 6'1 = 185.42cm
-```
-
-###### centimetres to feet/inches
-```
-> !convert 186cm
-> 186cm = 6'1
-```
-
-###### metres to feet/inches
-```
-> !convert 1.86m
-> 1.86m = 6'1
-```
-
-###### miles to kilometres
-```
-> !convert 200miles
-> 200miles to 321.80km
-```
-
-###### kilometres to miles
-```
-> !convert 200km
-> 200km = 124.30 miles
-```
-
-###### kilometres to miles
-```
-> !convert 200kilometers
-> 200kilometers = 124.30 miles
+type FirebotResponse = {
+  success: boolean,
+  effects: FirebotEffect[]
+}
 ```

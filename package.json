@@ -1,8 +1,12 @@
 {
   "scripts": {
+    "build": "tsc",
     "test": "mocha"
   },
   "dependencies": {
     "mocha": "^9.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.4"
   }
 }

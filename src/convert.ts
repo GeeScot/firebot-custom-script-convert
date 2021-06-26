@@ -1,4 +1,12 @@
-exports.getScriptManifest = () => {
+import { FirebotRequest, FirebotResponse } from 'firebot';
+
+export default {
+  getScriptManifest,
+  getDefaultParameters,
+  run
+}
+
+function getScriptManifest() {
   return {
     name: 'Convert Imperial/Metric',
     description: 'Converts values from imperial to metric and vice versa',
@@ -10,8 +18,18 @@ exports.getScriptManifest = () => {
   };
 }
 
-exports.run = (runRequest) => {
-  const command = runRequest.trigger.metadata.userCommand.args.join('');
+function getDefaultParameters() {
+  return {
+    message: {
+      type: "string",
+      default: "Hello World!",
+      description: "Message"
+    }
+  };
+}
+
+function run(runRequest: FirebotRequest) {
+  const command = runRequest.parameters.message.replace(/\s/g, '');
   let response = "";
 
   switch (true) {
@@ -38,9 +56,9 @@ exports.run = (runRequest) => {
   return createResponse(response);
 }
 
-function createResponse(message) {
+function createResponse(message: string): Promise<FirebotResponse> {
   return new Promise((resolve, reject) => {
-    const response = {
+    const response: FirebotResponse = {
       success: true,
       effects: [{
         type: 'firebot:chat',
@@ -53,17 +71,17 @@ function createResponse(message) {
   });
 }
 
-function milesToKilometres(miles) {
+function milesToKilometres(miles: string): string {
   const km = parseFloat(miles) * 1.609;
   return `${miles} = ${km.toFixed(2)}km`;
 }
 
-function kilometresToMiles(km) {
+function kilometresToMiles(km: string): string{
   const miles = parseFloat(km) / 1.609;
   return `${km} = ${miles.toFixed(2)} miles`;
 }
 
-function temperature(temp) {
+function temperature(temp: string): string{
   const value = parseFloat(temp);
   if (temp.toLowerCase().endsWith('c')) {
     const fValue = (value * (9 / 5)) + 32;
@@ -74,23 +92,23 @@ function temperature(temp) {
   }
 }
 
-function feetToCM(height) {
+function feetToCM(height: string): string {
   const [feet, inches] = height.split('\'', 2);
   const heightInCm = (parseInt(feet)*12 + parseInt(inches))*2.54;
   return `${height} = ${heightInCm.toFixed(2)}cm`;
 }
 
-function cmToFeet(height) {
+function cmToFeet(height: string): string {
   const cmValue = parseFloat(height);
   return `${height} = ${cmToInches(cmValue)}`;
 }
 
-function metresToFeet(height) {
+function metresToFeet(height: string): string {
   const mValue = parseFloat(height);
   return `${height} = ${cmToInches(mValue*100)}`;
 }
 
-function cmToInches(heightCm) {
+function cmToInches(heightCm: number): string {
   const totalInches = heightCm / 2.54;
   const totalFeet = Math.floor(totalInches/12);
   const remainingInches = Math.floor(totalInches % 12);
