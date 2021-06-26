@@ -1,8 +1,6 @@
 declare module "firebot" {
   type FirebotRequest = {
-    parameters: { 
-      message: string
-    },
+    parameters: object | null,
     trigger: {
       type: string,
       metadata: {

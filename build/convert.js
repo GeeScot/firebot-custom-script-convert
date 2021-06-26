@@ -11,17 +11,8 @@ exports.getScriptManifest = () => {
         firebotVersion: '5'
     };
 };
-exports.getDefaultParameters = () => {
-    return {
-        message: {
-            type: "string",
-            default: "Hello World!",
-            description: "Message"
-        }
-    };
-};
 exports.run = (runRequest) => {
-    const command = runRequest.parameters.message.replace(/\s/g, '');
+    const command = runRequest.trigger.metadata.userCommand.args.join('');
     let response = "";
     switch (true) {
         case /^-{0,1}[0-9]+[cf]{1}$/i.test(command):

@@ -12,18 +12,8 @@ exports.getScriptManifest = () => {
   };
 }
 
-exports.getDefaultParameters = () => {
-  return {
-    message: {
-      type: "string",
-      default: "Hello World!",
-      description: "Message"
-    }
-  };
-}
-
 exports.run = (runRequest: FirebotRequest) => {
-  const command = runRequest.parameters.message.replace(/\s/g, '');
+  const command = runRequest.trigger.metadata.userCommand.args.join('');
   let response = "";
 
   switch (true) {
