@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.getScriptManifest = () => {
     return {
         name: 'Convert Imperial/Metric',
@@ -94,4 +96,3 @@ function cmToInches(heightCm) {
     const remainingInches = Math.floor(totalInches % 12);
     return `${totalFeet}'${remainingInches}`;
 }
-export {};

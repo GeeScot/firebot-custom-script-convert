@@ -4,6 +4,7 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
+    "module": "none",
     "target": "es6",
     "outDir": "./build",
     "typeRoots": ["./node_modules/@types", "./@types"]
