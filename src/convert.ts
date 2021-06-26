@@ -1,12 +1,6 @@
 import { FirebotRequest, FirebotResponse } from 'firebot';
 
-export default {
-  getScriptManifest: getScriptManifest,
-  getDefaultParameters: getDefaultParameters,
-  run: run
-}
-
-function getScriptManifest() {
+exports.getScriptManifest = () => {
   return {
     name: 'Convert Imperial/Metric',
     description: 'Converts values from imperial to metric and vice versa',
@@ -18,7 +12,7 @@ function getScriptManifest() {
   };
 }
 
-function getDefaultParameters() {
+exports.getDefaultParameters = () => {
   return {
     message: {
       type: "string",
@@ -28,7 +22,7 @@ function getDefaultParameters() {
   };
 }
 
-function run(runRequest: FirebotRequest) {
+exports.run = (runRequest: FirebotRequest) => {
   const command = runRequest.parameters.message.replace(/\s/g, '');
   let response = "";
 
